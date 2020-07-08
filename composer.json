@@ -3,7 +3,7 @@
     "description": "Converter Kana to Alphabet initial",
     "minimum-stability": "stable",
     "type": "library",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "authors": [
         {
@@ -19,5 +19,10 @@
         "kana",
         "initial"
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Shimoning\\Kana2Initial\\": "src/"
+        }
+    }
 }
