@@ -2,8 +2,18 @@
 
 namespace Shimoning\Kana2Initial;
 
+/**
+ * ひらがなをローマ字の頭文字に変換する静的クラス
+ *
+ * @author Shimon Haga <haga@shimon.biz>
+ */
 class KanaToInitial
 {
+    /**
+     * ひらがなとローマ字の頭文字のマッピング
+     *
+     * @var array
+     */
     const MAP = [
         'あ' => 'A', 'い' => 'I', 'う' => 'U', 'え' => 'E', 'お' => 'O',
         'か' => 'K', 'き' => 'K', 'く' => 'K', 'け' => 'K', 'こ' => 'K',
@@ -25,6 +35,11 @@ class KanaToInitial
         'ぱ' => 'P', 'ぴ' => 'P', 'ぷ' => 'P', 'ぺ' => 'P', 'ぽ' => 'P',
     ];
 
+    /**
+     * ヘボン式用のマッピング
+     *
+     * @var array
+     */
     const HEBON_MAP = [
         'ち' => 'C',
         'ふ' => 'F',
@@ -37,16 +52,44 @@ class KanaToInitial
         'づ' => 'Z',
     ];
 
+    /**
+     * ヘボン式を利用するかどうか
+     *
+     * @var boolean
+     */
     private static $__hebon = false;
-    private static $__replaceRL = false;
 
-    public static function init($hebon = false, $replaceRL = false)
+    /**
+     * 「ら」行の頭文字は通常 'R' だが、 'L' にしたい場合は true をセットする
+     *
+     * @var boolean
+     */
+    private static $__replaceR2L = false;
+
+    /**
+     * 初期化関数
+     *
+     * ヘボン式を利用したり、「ら」行の扱いを変える時に呼ぶ
+     *
+     * @param boolean $hebon
+     * @param boolean $replaceR2L
+     * @return void
+     */
+    public static function init($hebon = false, $replaceR2L = false)
     {
         static::$__hebon = $hebon;
-        static::$__replaceRL = $replaceRL;
+        static::$__replaceR2L = $replaceR2L;
     }
 
-    public static function convert($string)
+    /**
+     * ひらがなをローマ字の頭文字に変換する
+     *
+     * もし対応できない文字列がきた場合は、頭文字を無変換で返す
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function convert(string $string): string
     {
         $firstLetter = mb_substr($string, 0, 1);
 
@@ -59,14 +102,20 @@ class KanaToInitial
         }
 
         $replaced = static::MAP[$firstLetter] ?? '';
-        if (static::$__replaceRL && $replaced === 'R') {
+        if (static::$__replaceR2L && $replaced === 'R') {
             return 'L';
         }
 
         return $replaced;
     }
 
-    public static function validate($string)
+    /**
+     * 変換可能無文字列かどうかチェックする
+     *
+     * @param string $string
+     * @return boolean
+     */
+    public static function validate(string $string): boolean
     {
         return preg_match('/^[あいおうえおか-もやゆよら-ろわ-ん]+/u', $string);
     }
