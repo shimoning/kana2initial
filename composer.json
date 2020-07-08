@@ -1,0 +1,22 @@
+{
+    "name": "shimoning/kana_to_initial",
+    "description": "Converter Kana to Alphabet initial",
+    "minimum-stability": "stable",
+    "type": "library",
+    "version": "0.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shimon Haga",
+            "email": "haga@shimon.biz",
+            "homepage": "https://shimon.biz"
+        }
+    ],
+    "keywords": [
+        "japanese",
+        "romaji",
+        "hiragana",
+        "initial"
+    ],
+    "require": {}
+}
