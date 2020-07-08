@@ -1,5 +1,5 @@
 {
-    "name": "shimoning/kana_to_initial",
+    "name": "shimoning/kana2initial",
     "description": "Converter Kana to Alphabet initial",
     "minimum-stability": "stable",
     "type": "library",
@@ -16,6 +16,7 @@
         "japanese",
         "romaji",
         "hiragana",
+        "kana",
         "initial"
     ],
     "require": {}
