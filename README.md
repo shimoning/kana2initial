@@ -24,7 +24,7 @@ Packagist には登録してないので、 `KanaToInitial.php` をDLなりコ�
 その後以下でインストールする。
 
 ```bash
-composer update
+composer update shimoning/kana2initial
 ```
 
 ## Usage

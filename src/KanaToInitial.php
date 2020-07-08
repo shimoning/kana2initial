@@ -55,14 +55,14 @@ class KanaToInitial
     /**
      * ヘボン式を利用するかどうか
      *
-     * @var boolean
+     * @var bool
      */
     private static $__hebon = false;
 
     /**
      * 「ら」行の頭文字は通常 'R' だが、 'L' にしたい場合は true をセットする
      *
-     * @var boolean
+     * @var bool
      */
     private static $__replaceR2L = false;
 
@@ -71,11 +71,11 @@ class KanaToInitial
      *
      * ヘボン式を利用したり、「ら」行の扱いを変える時に呼ぶ
      *
-     * @param boolean $hebon
-     * @param boolean $replaceR2L
+     * @param bool $hebon
+     * @param bool $replaceR2L
      * @return void
      */
-    public static function init($hebon = false, $replaceR2L = false)
+    public static function init(bool $hebon = false, bool $replaceR2L = false)
     {
         static::$__hebon = $hebon;
         static::$__replaceR2L = $replaceR2L;
@@ -113,10 +113,10 @@ class KanaToInitial
      * 変換可能無文字列かどうかチェックする
      *
      * @param string $string
-     * @return boolean
+     * @return bool
      */
-    public static function validate(string $string): boolean
+    public static function validate(string $string): bool
     {
-        return preg_match('/^[あいおうえおか-もやゆよら-ろわ-ん]+/u', $string);
+        return preg_match('/^[あいおうえおか-もやゆよら-ろわ-ん]+/u', $string) === 1;
     }
 }
